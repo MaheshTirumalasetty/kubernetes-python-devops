@@ -1,101 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Template</title>
+<title>Mahesh Tirumalasetti – DevOps & Cloud Engineer</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-  box-sizing: border-box;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: yellow;
-}
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-  float: left;
-  width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-article {
-  float: left;
-  padding: 20px;
-  width: 70%;
-  background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: yellow;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
+  :root {
+    --bg:        #080C14;
+    --surface:   #0D1421;
+    --panel:     #111927;
+    --border:    #1E2D42;
+    --accent:    #3B82F6;
+    --accent2:   #06B6D4;
+    --gold:      #F59E0B;
+    --text:      #E2E8F0;
+    --muted:     #64748B;
+    --success:   #10B981;
+    --display:   'Space Grotesk', sans-serif;
+    --mono:      'JetBrains Mono', monospace;
   }
-}
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--display);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID LINES BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 48px;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .hero-content { max-width: 720px; }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1.hero-name {
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  h1.hero-name span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 28px;
+  }
+
+  .hero-summary {
+    font-size: 16px;
+    color: #94A3B8;
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 40px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 44px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    background: rgba(6,182,212,0.08);
+    border: 1px solid rgba(6,182,212,0.2);
+    padding: 6px 14px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: #2563EB; transform: translateY(-1px); }
+
+  /* ── GLOW ORBS ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+  .orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -200px; }
+  .orb-2 { width: 400px; height: 400px; background: var(--accent2); bottom: 10%; left: -150px; }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h2.section-heading {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 48px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+    max-width: calc(1200px - 96px);
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .skill-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .skill-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .skill-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .skill-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; gap: 24px; }
+
+  .exp-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+    transition: border-color 0.2s;
+  }
+  .exp-card:hover { border-color: var(--accent); }
+
+  .exp-role {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: var(--accent2);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: #94A3B8;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+    top: 2px;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .cert-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .cert-badge-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 6px;
+  }
+
+  .cert-info { flex: 1; }
+
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cert-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .cert-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  .cert-link-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold);
+    border: 1px solid rgba(245,158,11,0.3);
+    padding: 5px 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .cert-card:hover .cert-link-label {
+    background: rgba(245,158,11,0.08);
+  }
+
+  /* ── CONTACT ── */
+  .contact-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 56px;
+    text-align: center;
+  }
+
+  .contact-box h3 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .contact-box p {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 36px;
+  }
+
+  .contact-items {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 22px;
+    border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-item:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .status-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--success);
+  }
+
+  .status-dot::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
 </style>
 </head>
 <body>
 
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
-<header>
-  <h2>Free DevOps Course By Abhishek</h2>
-</header>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MT // DevOps & Cloud</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-<section>
-  <nav>
-    <ul>
-      <li><a href="www.youtube.com/@AbhishekVeeramalla">YouTube</a></li>
-      <li><a href="www.linkedin.com/in/abhishek-veeramalla-77b33996/">LinkedIn</a></li>
-      <li><a href="https://telegram.me/abhishekveeramalla">Telegram</a></li>
-    </ul>
-  </nav>
-  
-  <article>
-    <h1>Agenda</h1>
-    <p>Learn DevOps with strong foundational knowledge and practical understanding</p>
-    <p>Please Share the Channel with your friends and colleagues</p>
-  </article>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for new opportunities</div>
+    <h1 class="hero-name">Mahesh<br><span>Tirumalasetti</span></h1>
+    <p class="hero-title">DevOps & Cloud Infrastructure Engineer · 4+ Years</p>
+    <p class="hero-summary">
+      Designing and optimizing cloud infrastructure and CI/CD pipelines for advanced robotics,
+      manufacturing, and distributed platforms. Specializing in Kubernetes on AWS EKS, Terraform,
+      and end-to-end observability across AWS and Azure Gov environments.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Kubernetes</span>
+      <span class="tag">AWS EKS</span>
+      <span class="tag">Terraform</span>
+      <span class="tag">Azure DevOps</span>
+      <span class="tag">GitHub Actions</span>
+      <span class="tag">Prometheus</span>
+      <span class="tag">Grafana</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Python</span>
+      <span class="tag">HashiCorp Vault</span>
+    </div>
+    <a href="#contact" class="hero-cta">Get in touch →</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-heading">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">☸️</div>
+      <h3>Kubernetes & Containers</h3>
+      <p>AWS EKS cluster management, Docker image builds, container registries, high-availability deployments for ML inference services.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <h3>Cloud Platforms</h3>
+      <p>AWS (EKS, RDS, DynamoDB, IAM, CodePipeline) and Azure Gov cloud infrastructure provisioning and security configuration.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔧</div>
+      <h3>Infrastructure as Code</h3>
+      <p>Terraform and AWS CloudFormation for automated provisioning of development and production environments across cloud platforms.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🚀</div>
+      <h3>CI/CD Pipelines</h3>
+      <p>AWS CodePipeline, Jenkins, Azure DevOps, and GitHub Actions for automated software deployments, robotics and AI applications.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📈</div>
+      <h3>Observability & Monitoring</h3>
+      <p>Prometheus, Grafana, Datadog, Elasticsearch, Logstash, and Kibana (ELK) for real-time visibility into system and robot performance.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔐</div>
+      <h3>Security & Secrets</h3>
+      <p>HashiCorp Vault for secrets management, AWS IAM roles, security groups, and secure access controls across cloud services.</p>
+    </div>
+  </div>
 </section>
 
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-heading">Work Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">DevOps Engineer</div>
+        <div class="exp-company">Machina Labs</div>
+        <ul class="exp-bullets">
+          <li>Built and managed Azure Gov cloud infrastructure using Terraform for advanced manufacturing and robotics operations.</li>
+          <li>Designed CI/CD pipelines with Azure DevOps and GitHub Actions, automating deployments for robotics and AI applications.</li>
+          <li>Implemented secure secrets management using HashiCorp Vault across multiple environments and services.</li>
+          <li>Created comprehensive observability systems using Prometheus, Grafana, and Datadog for critical service monitoring.</li>
+          <li>Implemented containerized deployment solutions using Docker and Kubernetes, enhancing application portability and scalability.</li>
+          <li>Defined foundational DevOps practices and standards for cloud infrastructure, CI/CD, and security as Machina Labs scaled.</li>
+        </ul>
+      </div>
+      <div class="exp-date">Aug 2024 – Present</div>
+    </div>
+
+    <div class="exp-card">
+      <div>
+        <div class="exp-role">DevOps Engineer</div>
+        <div class="exp-company">Amazon Robotics</div>
+        <ul class="exp-bullets">
+          <li>Developed CI/CD pipelines using AWS CodePipeline and Jenkins for deploying critical robotics control software services.</li>
+          <li>Built and managed Kubernetes clusters on AWS EKS for ML inference services supporting object recognition systems.</li>
+          <li>Created IaC templates using Terraform and AWS CloudFormation to automate provisioning of cloud environments.</li>
+          <li>Improved system monitoring with Prometheus and Grafana for real-time visibility into autonomous mobile robot performance.</li>
+          <li>Implemented ELK stack logging to centralize and analyze operational data from robotic fleet deployments.</li>
+          <li>Configured IAM roles and security groups within AWS for secure and compliant robotics application access.</li>
+          <li>Designed backup and recovery strategies for Amazon RDS and DynamoDB ensuring robot operational data integrity.</li>
+        </ul>
+      </div>
+      <div class="exp-date">Jun 2021 – Jul 2023</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-heading">Certifications</h2>
+  <div class="cert-grid">
+
+    <a class="cert-card" href="https://www.credly.com/badges/07e5492e-5c01-44f7-9274-7ebb3deb4049/public_url" target="_blank" rel="noopener">
+      <img
+        class="cert-badge-img"
+        src="https://images.credly.com/images/bd31ef42-d460-493e-8503-39592aaf0458/linkedin_thumb_image.png"
+        alt="AWS Certified DevOps Engineer Professional Badge"
+      />
+      <div class="cert-info">
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-name">AWS Certified DevOps Engineer – Professional</div>
+        <div class="cert-desc">Validates expertise in implementing continuous delivery systems and automating resilient infrastructure deployments on AWS.</div>
+        <span class="cert-link-label">🏅 Verify on Credly →</span>
+      </div>
+    </a>
+
+    <a class="cert-card" href="https://www.credly.com/badges/4dd6479a-d5b2-4f9b-8200-fd49212c1a4f/public_url" target="_blank" rel="noopener">
+      <img
+        class="cert-badge-img"
+        src="https://images.credly.com/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/linkedin_thumb_image.png"
+        alt="AWS Certified Developer Associate Badge"
+      />
+      <div class="cert-info">
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-name">AWS Certified Developer – Associate</div>
+        <div class="cert-desc">Demonstrates proficiency in developing, deploying, and debugging cloud-based applications using AWS service APIs, CLI, and SDKs.</div>
+        <span class="cert-link-label">🏅 Verify on Credly →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <div class="section-label" style="justify-content:center; display:flex; margin-bottom:12px">Contact</div>
+    <h3>Let's work together</h3>
+    <p>Open to DevOps, Cloud Infrastructure, and SRE opportunities.</p>
+    <div class="contact-items">
+      <a class="contact-item" href="mailto:tmahesh19999@gmail.com">
+        📧 tmahesh19999@gmail.com
+      </a>
+      <a class="contact-item" href="tel:+18144199919">
+        📞 +1 814-419-9919
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>@AbhishekVeeramalla</p>
+  <p>© 2026 Mahesh Tirumalasetti · M.S. Computer Science, Avila University</p>
+  <span class="status-dot">Open to opportunities</span>
 </footer>
 
 </body>
 </html>
-
