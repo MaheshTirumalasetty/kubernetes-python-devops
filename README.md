@@ -1,5 +1,5 @@
 # Kubernetes Python DevOps Project 🚀
-
+[![GitHub stars](https://img.shields.io/github/stars/MaheshTirumalasetty/kubernetes-python-devops?style=social)](https://github.com/MaheshTirumalasetty/kubernetes-python-devops)
 ## Project Overview
 A Python Django web application containerized with Docker
 and deployed on Kubernetes with full DevOps pipeline.
